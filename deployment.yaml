@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: myapp-deployment # Nama deployment
+spec:
+  replicas: 3 # Jumlah instance pod yang sama yang ingin di-deploy
+  selector:
+    matchLabels:
+      app: myapp # Label pod yang harus dimiliki agar diatur oleh deployment ini
+  template:
+    metadata:
+      labels:
+        app: myapp # Label pod
+    spec:
+      containers:
+        - name: myapp # Nama container
+          image: myapp:latest # Image Docker yang akan dijalankan di dalam container
+          ports:
+            - containerPort: 8080 # Port yang akan digunakan oleh container untuk menerima permintaan
